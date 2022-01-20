@@ -10,6 +10,9 @@ const userSchema = mongoose.Schema({
    
 });
 
+//Appliquer uniqueValidator au schèma
+//userSchema.plugin(uniqueValidator);
+
 
 
 //Exporter mongoose.model

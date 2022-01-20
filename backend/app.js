@@ -7,6 +7,8 @@ const morgan = require("morgan");
 //Importer mongoose dans le fichier app.js
 const mongoose = require("./db/db");
 
+//////const path = require('path');
+
 //Importer les routes
 const userRoutes = require('./routes/user');
 
@@ -29,6 +31,13 @@ app.use((req, res, next) =>{
 
 //Analyser (parser) le corps de la requete avec express.json
 app.use(express.json());
+
+//Enregistrer le routeur pour toutes les demandes effectuées vers /api/sauces  
+
+//Ajouter le gestionnaire de routage
+/////app.use('/images', express.static(path.join(__dirname, 'images')));
+
+//////app.use('/api/stuff', stuffRoutes);
 
 app.use("/api/auth", userRoutes);
 
