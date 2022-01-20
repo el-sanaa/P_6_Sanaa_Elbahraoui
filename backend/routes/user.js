@@ -1,4 +1,3 @@
-
 //routes user.js
 //Importer framwork expresss
 const express = require('express');
