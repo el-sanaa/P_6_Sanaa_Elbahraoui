@@ -10,7 +10,9 @@ const router = express.Router();
 
 //Créer les routes post //méthode signup et login
 router.post('/signup', userCtrl.signup);
-//router.post('/login', userCtrl.login);
+router.post('/login', userCtrl.login);
+
+
 
 //Exporter module(router)
 module.exports = router; 

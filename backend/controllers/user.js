@@ -6,7 +6,7 @@ const User = require('../models/User');
 const bcrypt = require('bcrypt');
 
 //Importer jwt
-//const jwt = require('jsonwebtoken');
+const jwt = require('jsonwebtoken');
 
 //Fonction signup pour enregistrer des nouveaux utilisateurs
 //Méthode hash de bcrypt
@@ -16,13 +16,14 @@ exports.signup = (req, res, next) => {
       const user = new User({
         email: req.body.email,
         password: hash
+     
       });
       user.save()
         .then(() => res.status(201).json({ message: 'Utilisateur créé !' }))
         .catch(error => res.status(400).json({ error }));
     })
     .catch(error => res.status(500).json({ error }));
-};
+  };
 
 //Fonction login pour connecter les ulisateurs existants
 //vérifier si l'utilisateur qui tente de se connecter dispose d'identifiants valides.
