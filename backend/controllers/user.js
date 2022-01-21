@@ -18,6 +18,7 @@ exports.signup = (req, res, next) => {
         password: hash
      
       });
+      //Envoyer le user ds la base de donnée mongodb  
       user.save()
         .then(() => res.status(201).json({ message: 'Utilisateur créé !' }))
         .catch(error => res.status(400).json({ error }));
@@ -25,7 +26,7 @@ exports.signup = (req, res, next) => {
     .catch(error => res.status(500).json({ error }));
   };
 
-//Fonction login pour connecter les ulisateurs existants
+//Fonction login pour connecter les utilisateurs existants
 //vérifier si l'utilisateur qui tente de se connecter dispose d'identifiants valides.
 //Implémentons de la fonction login
 exports.login = (req, res, next) => {
