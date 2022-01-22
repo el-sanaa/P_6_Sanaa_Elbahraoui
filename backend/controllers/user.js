@@ -44,10 +44,11 @@ exports.login = (req, res, next) => {
           if (!valid) {
             return res.status(401).json({ error: 'Mot de passe incorrect !' });
           }
-          res.status(200).json({
+          res.status(200).json({ //Si le mot de passe est bon
             userId: user._id,
             token: jwt.sign( //Fonction sign pour encoder un nouveau token
               { userId: user._id },//Utiliser une chaîne secrète de développement temporaire
+              `${process.env.JWT_KEY_TOKEN}`,
               'RANDOM_TOKEN_SECRET',
               { expiresIn: '24h' } //Connection (token) limitée à 24h
             )
