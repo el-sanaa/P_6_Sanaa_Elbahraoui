@@ -2,7 +2,7 @@
 //Créer un routeur express 
 const express = require('express');
 const router = express.Router();
-const saucesCtrl = require('../controllers/sauces');
+const sauceCtrl = require('../controllers/fichesauce');
 
 const auth = require('../middleware/auth');
 

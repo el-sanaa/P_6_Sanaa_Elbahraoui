@@ -21,4 +21,4 @@ const saucesSchema = mongoose.Schema({
 });
 
 //Exporter mongoose.modele // La méthode  model  transforme ce modèle en un modèle utilisable
-module.exports = mongoose.model('Sauces', saucesSchema);
+module.exports = mongoose.model('Sauce', saucesSchema);
