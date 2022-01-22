@@ -7,13 +7,15 @@ const morgan = require("morgan");
 //Importer mongoose dans le fichier app.js
 const mongoose = require("./db/db");
 
-const saucesRoutes = require('./routes/sauce');
-
 const path = require('path');
+
+const saucesRoutes = require('./routes/sauce');
 //Importer les routes
 const userRoutes = require('./routes/user');
-const mongoSanitize = require('express-mongo-sanitize');
-const helmet = require("helmet");
+
+//const mongoSanitize = require('express-mongo-sanitize');
+
+//const helmet = require("helmet");
 
 
 //Créer une application express
@@ -43,8 +45,8 @@ app.use(morgan("dev"));
 mongoose.set('debug', true);
 
 
-app.use(mongoSanitize()); 
-app.use(helmet()); 
+//app.use(mongoSanitize()); 
+//app.use(helmet()); 
 
 //Enregistrer le routeur pour toutes les demandes effectuées vers /api/sauces  
 //Ajouter le gestionnaire de routage
