@@ -2,6 +2,9 @@
 //Importer mongoose
 const mongoose = require('mongoose');
 
+//Importer uniqueValidator
+const uniqueValidator = require('mongoose-unique-validator');
+
 //Créer schema de données pour la base de données MongoDB.
 //Définir la forme du documents
 const userSchema = mongoose.Schema({
@@ -11,10 +14,8 @@ const userSchema = mongoose.Schema({
 });
 
 //Appliquer uniqueValidator au schèma
-//userSchema.plugin(uniqueValidator);
-
+userSchema.plugin(uniqueValidator);
 
 
 //Exporter mongoose.model
 module.exports = mongoose.model("user", userSchema); 
-//module.exports = mongoose.model("user", userSchema);

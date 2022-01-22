@@ -18,6 +18,9 @@ const app = express();
 //Logger les reponses et les requetes
 app.use(morgan("dev"));
 
+//Mongoose option debug
+mongoose.set('debug', true);
+
 //Fonction Middeware général avec des les headers qui permettent 
 //d'accéder à notre API depuis n'importe quelle origine ( '*' )
 //d'ajouter les headers mentionnés aux requêtes envoyées vers notre API (Origin , X-Requested-With , etc.) ;
@@ -35,9 +38,9 @@ app.use(express.json());
 //Enregistrer le routeur pour toutes les demandes effectuées vers /api/sauces  
 
 //Ajouter le gestionnaire de routage
-/////app.use('/images', express.static(path.join(__dirname, 'images')));
+app.use('/images', express.static(path.join(__dirname, 'images')));
 
-//////app.use('/api/stuff', stuffRoutes);
+app.use('/api/stuff', stuffRoutes);
 
 app.use("/api/auth", userRoutes);
 
