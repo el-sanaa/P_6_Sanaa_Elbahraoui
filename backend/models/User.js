@@ -8,8 +8,8 @@ const uniqueValidator = require('mongoose-unique-validator');
 //Créer schema de données pour la base de données MongoDB.
 //Définir la forme du documents
 const userSchema = mongoose.Schema({
-  email: { type: String, required: true, unique: true },
-  password: { type: String, required: true }
+  email: { type: String, required: true, unique: true },//adresse e-mail de l'utilisateur [unique]
+  password: { type: String, required: true }// mot de passe de l'utilisateur haché
    
 });
 
