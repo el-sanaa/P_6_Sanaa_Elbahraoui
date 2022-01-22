@@ -2,12 +2,16 @@
 //Créer un routeur express 
 const express = require('express');
 const router = express.Router();
-const sauceCtrl = require('../controllers/fichesauce');
 
 const auth = require('../middleware/auth');
-
 //Ajouter le middleware à la route post dans ce routeur stuff 
 const multer = require('../middleware/multer-config');
+
+const sauceCtrl = require('../controllers/sauce');
+
+
+
+
 
 
 //Appliquer le middleware à toutes les routes
