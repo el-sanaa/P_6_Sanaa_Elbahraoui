@@ -2,7 +2,7 @@
 const dotenv = require("dotenv");
 const result = dotenv.config();
 
-//Importer mongooe pour se connecter à la base db
+//Importer mongoose pour se connecter à la base db
 //Variables d'environnement pour le password, le user et le nom de la base de donnée
 const mongoose = require("mongoose");
 mongoose.connect(`mongodb+srv://${process.env.DB_USERNAME}:${process.env.DB_PASSWORD}@${process.env.DB_CLUSTER}.mongodb.net/${process.env.DB_NAME}?retryWrites=true&w=majority` ,

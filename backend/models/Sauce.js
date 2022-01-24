@@ -2,7 +2,7 @@
 const mongoose = require('mongoose');
 
 //Data ModelsSauce
-//Créer schema de données utilisateur 
+//Créer schema de données 
 const saucesSchema = mongoose.Schema({
     userId: { type: String }, //'identifiant MongoDB unique de l'utilisateur qui a créé la
     name: { type: String, required: true }, //nom de la sauce
@@ -16,7 +16,6 @@ const saucesSchema = mongoose.Schema({
     usersLiked: [String], // [ "String <userId>" ] — tableau des identifiants des utilisateurs qui ont aimé (= liked) la sauce
     usersDisliked: [String] , //[ "String <userId>" ] — tableau des identifiants des
                                 //utilisateurs qui n'ont pas aimé (= disliked) la sauce
-    
     
 });
 

@@ -1,20 +1,21 @@
 //Mettre les routes dans le routeur
 //Créer un routeur express 
 const express = require('express');
+
+//Fonction Router
 const router = express.Router();
 
+//Importet middleware pour authentifier les pages de l'application
 const auth = require('../middleware/auth');
-//Ajouter le middleware à la route post dans ce routeur stuff 
+
+//Middleware pour définir la destination et le nom de fichier des images 
 const multer = require('../middleware/multer-config');
 
+//Importer controllers sauce
 const sauceCtrl = require('../controllers/sauce');
 
-
-
-
-
-
-//Appliquer le middleware à toutes les routes
+//Les routes
+//Appliquer le middleware aux routes
 router.post('/', auth, multer, sauceCtrl.createSauce);
 router.put('/:id', auth, multer, sauceCtrl.modifySauce);
 router.delete('/:id', auth, sauceCtrl.deleteSauce);

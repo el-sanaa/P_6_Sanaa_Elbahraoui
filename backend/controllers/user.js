@@ -1,5 +1,3 @@
-//Controller de la route
-
 //Importer bcrypt
 const bcrypt = require('bcrypt');
 
@@ -39,16 +37,20 @@ exports.login = (req, res, next) => {
       if (!user) {
         return res.status(401).json({ error: 'Utilisateur non trouvé !' });
       }
-      bcrypt.compare(req.body.password, user.password)//Comparer le mot de passe 
+      //Comparer le mot de passe
+      console.log(req.body.password);
+      
+      bcrypt.compare(req.body.password, user.password) 
         .then(valid => {
           if (!valid) {
             return res.status(401).json({ error: 'Mot de passe incorrect !' });
           }
+          
           res.status(200).json({ //Si le mot de passe est bon
             userId: user._id,
             token: jwt.sign( //Fonction sign pour encoder un nouveau token
-              { userId: user._id },//Utiliser une chaîne secrète de développement temporaire
-              `${process.env.JWT_KEY_TOKEN}`,
+              { userId: user._id },
+             // `${process.env.JWT_KEY_TOKEN}`,
               'RANDOM_TOKEN_SECRET',
               { expiresIn: '24h' } //Connection (token) limitée à 24h
             )

@@ -1,5 +1,5 @@
-//Importer model Sauce
-const Sauce = require('../models/Sauce');
+//Importer models Sauce
+const Sauce = require('../models/sauce');
 
 //Importer le package fs de node pour modifier ou supprimer des fichiers
 const fs = require('fs');

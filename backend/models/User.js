@@ -2,7 +2,7 @@
 //Importer mongoose
 const mongoose = require('mongoose');
 
-//Importer uniqueValidator
+//Importer package uniqueValidator pour valider l'unicité de l'email
 const uniqueValidator = require('mongoose-unique-validator');
 
 //Créer schema de données pour la base de données MongoDB.
@@ -18,4 +18,4 @@ userSchema.plugin(uniqueValidator);
 
 
 //Exporter mongoose.model
-module.exports = mongoose.model("user", userSchema); 
+module.exports = mongoose.model("User", userSchema); 

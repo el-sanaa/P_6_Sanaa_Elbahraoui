@@ -12,7 +12,7 @@
      const decodedToken = jwt.verify(token, 'RANDOM_TOKEN_SECRET');//Vérifier le token
      const userId = decodedToken.userId;
      req.auth = { userId };
-     if (req.body.userId && req.body.userId !== userId) {
+     if (req.body.userId && req.body.userId !== userId) { // Si les id sont différents
        throw 'Invalid user ID';
      } else {
        next();

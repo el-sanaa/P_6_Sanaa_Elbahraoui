@@ -18,10 +18,10 @@ const MIME_TYPES = {
 //et d'ajouter un timestamp Date.now() comme nom de fichier. Elle utilise ensuite la constante dictionnaire de type MIME 
 //pour résoudre l'extension de fichier appropriée.
 const storage = multer.diskStorage({
-  destination: (req, file, callback) => {
+  destination: (req, file, callback) => { //Destination :Ou mettre le fichier
     callback(null, 'images');
   },
-  filename: (req, file, callback) => {
+  filename: (req, file, callback) => { // nouveau nom du fichier image pour éviter les doublons
     const name = file.originalname.split(' ').join('_');
     const extension = MIME_TYPES[file.mimetype];
     callback(null, name + Date.now() + '.' + extension);
