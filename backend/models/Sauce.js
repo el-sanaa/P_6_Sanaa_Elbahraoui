@@ -1,6 +1,11 @@
 //Importer mongoose
 const mongoose = require('mongoose');
 
+const sanitizerPlugin = require('mongoose-sanitizer-plugin');
+
+// Appel le middleware de validation des champs du model de la sauce
+const sauceAuth = require('../middleware/sauceAuth');
+
 //Data ModelsSauce
 //Créer schema de données 
 const saucesSchema = mongoose.Schema({
@@ -18,6 +23,9 @@ const saucesSchema = mongoose.Schema({
                                 //utilisateurs qui n'ont pas aimé (= disliked) la sauce
     
 });
+
+// Plugin pour Mongoose qui purifie les champs du model avant de les enregistrer dans la base MongoDB.
+saucesSchema.plugin(sanitizerPlugin);
 
 //Exporter mongoose.modele // La méthode  model  transforme ce modèle en un modèle utilisable
 module.exports = mongoose.model('Sauce', saucesSchema);

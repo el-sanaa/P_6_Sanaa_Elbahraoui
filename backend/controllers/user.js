@@ -32,33 +32,34 @@ exports.signup = (req, res, next) => {
 //vérifier si l'utilisateur qui tente de se connecter dispose d'identifiants valides.
 //Implémenter la fonction login
 exports.login = (req, res, next) => {
-  User.findOne({ email: req.body.email })//Si l'utilisatuer est présent ds la base de donnée
+  User.findOne({ email: req.body.email })
     .then(user => {
       if (!user) {
         return res.status(401).json({ error: 'Utilisateur non trouvé !' });
       }
-      //Comparer le mot de passe
-      console.log(req.body.password);
-      
-      bcrypt.compare(req.body.password, user.password) 
+      bcrypt.compare(req.body.password, user.password)
         .then(valid => {
           if (!valid) {
             return res.status(401).json({ error: 'Mot de passe incorrect !' });
           }
-          
-          res.status(200).json({ //Si le mot de passe est bon
+          res.status(200).json({
             userId: user._id,
-            token: jwt.sign( //Fonction sign pour encoder un nouveau token
+            token: jwt.sign(
               { userId: user._id },
-             // `${process.env.JWT_KEY_TOKEN}`,
               'RANDOM_TOKEN_SECRET',
-              { expiresIn: '24h' } //Connection (token) limitée à 24h
+              { expiresIn: '24h' }
             )
           });
         })
         .catch(error => res.status(500).json({ error }));
     })
     .catch(error => res.status(500).json({ error }));
+};
 
-    next()
-  };
+
+
+
+
+
+
+

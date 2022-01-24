@@ -43,6 +43,7 @@ app.use(morgan("dev"));
 mongoose.set('debug', true);
 
 //app.use(mongoSanitize()); 
+//Securiser express
 //app.use(helmet()); 
 
 //Enregistrer le routeur pour toutes les demandes effectuées vers /api/sauces  
