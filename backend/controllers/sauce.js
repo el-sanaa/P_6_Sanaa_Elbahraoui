@@ -35,29 +35,19 @@ exports.modifySauce = (req, res, next) => {
 
 exports.deleteSauce = (req, res, next) => {
     // Trouver l'objet pour trouver l'url de l'image et supprimer le fichier image de la base
-    Sauce.findOne({
-        _id: req.params.id
-      })
+    Sauce.findOne({ _id: req.params.id})
       .then(sauce => {
         // Extraire le fichier => récupèrer l'url de la sauce + spliter le nom du fichier
         const filename = sauce.imageUrl.split('/images/')[1];
         // Appeller unlink pour supprimer le fichier
         fs.unlink(`images/${filename}`, () => {
           // Supprimer la sauce correspondante de la base de donnée
-          Sauce.deleteOne({
-              _id: req.params.id
-            })
-            .then(() => res.status(200).json({
-              message: 'Sauce supprimée !'
-            }))
-            .catch(error => res.status(400).json({
-              error
-            }));
+          Sauce.deleteOne({ _id: req.params.id})
+            .then(() => res.status(200).json({ message: 'Sauce supprimée !'}))
+            .catch(error => res.status(400).json({ error}));
         });
       })
-      .catch(error => res.status(500).json({
-        error
-      }));
+      
   };
 
   exports.likeSauce = (req, res, next) => {    
@@ -90,15 +80,16 @@ exports.deleteSauce = (req, res, next) => {
     }   
 };
 
+exports.getAllSauces = (req, res, next) => { //Récuperer toutes les sauces
+  Sauce.find()
+  .then( sauces => res.status(200).json(sauces))
+  .catch( error => res.status(400).json({ error }))
+};
+exports.getOneSauce = (req, res, next) => {  //Récupérer une seule sauce
+  Sauce.findOne({_id : req.params.id})
+  .then( sauce => res.status(200).json(sauce))
+  .catch( error => res.status(404).json({ error }))
+};
 
 
-exports.getAllSauces = (req, res, next) => { //Récupérer toutes les sauces
-    Sauce.find()
-    .then( sauces => res.status(200).json(sauces))
-    .catch( error => res.status(400).json({ error }))
-};
-exports.getOneSauce = (req, res, next) => {  //Récuperer une seule sauce
-    Sauce.findOne({_id : req.params.id})
-    .then( sauce => res.status(200).json(sauce))
-    .catch( error => res.status(404).json({ error }))
-};
+

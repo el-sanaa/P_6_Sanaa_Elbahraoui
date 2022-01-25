@@ -14,7 +14,7 @@ const path = require('path');
 const saucesRoutes = require('./routes/sauce');
 const userRoutes = require('./routes/user');
 
-//const mongoSanitize = require('express-mongo-sanitize');
+const mongoSanitize = require('express-mongo-sanitize');
 //const helmet = require("helmet");
 
 //Créer une application express
@@ -42,7 +42,7 @@ app.use(morgan("dev"));
 //Mongoose option debug
 mongoose.set('debug', true);
 
-//app.use(mongoSanitize()); 
+app.use(mongoSanitize()); 
 //Securiser express
 //app.use(helmet()); 
 
