@@ -14,12 +14,11 @@
      req.auth = { userId };
      if (req.body.userId && req.body.userId !== userId) { // Si les id sont différents
        throw 'Invalid user ID';
-     } else {
+        
+      } else {
        next();
      }
    } catch { //Bloc catch pour gerer les erreurs
-     res.status(401).json({
-       error: new Error('Invalid request!')
-     });
+     res.status(401).json({error: new Error('Invalid request!')});
    }
  };
