@@ -49,6 +49,7 @@ app.use(mongoSanitize());
 //Enregistrer le routeur pour toutes les demandes effectuées vers /api/sauces  
 //Ajouter le gestionnaire de routage
 app.use('/images', express.static(path.join(__dirname, 'images')));
+console.log(__dirname);
 app.use('/api/sauces', saucesRoutes); // Route sauce
 app.use("/api/auth", userRoutes);//Route d'authentification
 
