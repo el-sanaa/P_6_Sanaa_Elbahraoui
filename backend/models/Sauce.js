@@ -13,11 +13,12 @@ const sauceSchema = mongoose.Schema({
     likes: { type: Number, default: 0},
     dislikes: { type: Number, default: 0 },
     userId: { type: String },
-    usersLiked: { type: String},
-    usersDisliked:{ type: String} , 
+    usersLiked: { type: [String]},
+    usersDisliked:{ type: [String]} , 
 });
 
 
 
 //Exporter mongoose.modele // La méthode  model  transforme ce modèle en un modèle utilisable
-module.exports = mongoose.model('Sauce', sauceSchema);
+module.exports = mongoose.model('sauce', sauceSchema);
+

@@ -14,8 +14,7 @@ const multer = require('../middleware/multer-config');
 //Importer controllers sauce
 const sauceCtrl = require('../controllers/sauce');
 
-//Les routes
-//Appliquer le middleware aux routes
+//Appliquer le middleware aux routes pour les protéger
 router.post('/', auth, multer, sauceCtrl.createSauce);
 router.put('/:id', auth, multer, sauceCtrl.modifySauce);
 router.delete('/:id', auth, sauceCtrl.deleteSauce);

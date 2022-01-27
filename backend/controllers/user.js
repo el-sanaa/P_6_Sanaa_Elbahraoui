@@ -15,7 +15,7 @@ const jwt = require('jsonwebtoken');
 exports.signup = (req, res, next) => {
   bcrypt.hash(req.body.password, 10) // Saler le mot de passe 10 fois
     .then(hash => {
-      const user = new User({
+      const user = new User({ //Créer un new utilisateur
         email: req.body.email,
         password: hash
      
@@ -28,9 +28,9 @@ exports.signup = (req, res, next) => {
     .catch(error => res.status(500).json({ error }));
   };
 
-//Fonction login pour connecter les utilisateurs existants
+//Implémenter la Fonction login pour connecter les utilisateurs existants
 //vérifier si l'utilisateur qui tente de se connecter dispose d'identifiants valides.
-//Implémenter la fonction login
+
 exports.login = (req, res, next) => {
   User.findOne({ email: req.body.email })
     .then(user => {
@@ -55,9 +55,6 @@ exports.login = (req, res, next) => {
     })
     .catch(error => res.status(500).json({ error }));
 };
-
-
-
 
 
 

@@ -4,10 +4,13 @@ const express = require('express');
 //Imporet morgan logger http
 const morgan = require("morgan");
 
+const User = require('./models/User');
+//const Sauce = require('./models/Sause');
+
 //Importer connection base de donnée mongoDB
 const mongoose = require("./db/db");
 
-//Importer le chemin
+//Importer le chemin pour accéder au path (chemin) de notre serveur 
 const path = require('path');
 
 //Importer les routes sauce et user
@@ -49,9 +52,8 @@ app.use(mongoSanitize());
 //Enregistrer le routeur pour toutes les demandes effectuées vers /api/sauces  
 //Ajouter le gestionnaire de routage
 app.use('/images', express.static(path.join(__dirname, 'images')));
-console.log(__dirname);
-app.use('/api/sauces', saucesRoutes); // Route sauce
-app.use("/api/auth", userRoutes);//Route d'authentification
 
+app.use('/api/sauces', saucesRoutes);
+app.use('/api/auth', userRoutes);
 //Exporter appli app.js
 module.exports = app;

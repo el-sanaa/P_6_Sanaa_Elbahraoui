@@ -14,7 +14,7 @@ exports.createSauce = (req, res, next) => {
     });
     sauce.save() // Sauvegarder la sauce ds la base de donée
       //envoyer une réponse au frontend avec un statut 201 sinon on a une expiration de la requête  
-    .then( () => res.status(201).json({ message: 'Sauce saved'}))
+    .then( () => res.status(201).json({ message: 'Sauce enregistrée'}))
       //Code error si un problème   
     .catch( error => res.status(400).json({ error }))
     
@@ -29,7 +29,7 @@ exports.modifySauce = (req, res, next) => {
     } : { ...req.body };
    
     Sauce.updateOne({ _id: req.params.id} , {...sauceObject, _id: req.params.id})
-    .then(()=> res.status(200).json({ message: 'Sauce modified'}))
+    .then(()=> res.status(200).json({ message: 'Sauce modifiée'}))
     .catch(()=> res.status(400).json({ error}))
 };
 
@@ -91,6 +91,3 @@ exports.getOneSauce = (req, res, next) => {  //Récupérer une seule sauce
   .then( sauce => res.status(200).json(sauce))
   .catch( error => res.status(404).json({ error }))
 };
-
-
-
