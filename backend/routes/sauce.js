@@ -5,7 +5,7 @@ const express = require('express');
 //Fonction Router
 const router = express.Router();
 
-//Importet middleware pour authentifier les pages de l'application
+//Importer middleware pour authentifier les pages de l'application
 const auth = require('../middleware/auth');
 
 //Middleware pour définir la destination et le nom de fichier des images 

@@ -11,8 +11,9 @@ const User = require('../models/User');
 const jwt = require('jsonwebtoken');
 
 //Fonction asynchrome signup pour enregistrer des nouveaux utilisateurs
-//Méthode hash de bcrypt
-exports.signup = (req, res, next) => {
+//Méthode hash () de bcrypt crée un hash crypté des mots de passe 
+/////des utilisateurs pour les enregistrer de manière sécurisée dans la base de données.
+exports.signup = (req, res, next) => { 
   bcrypt.hash(req.body.password, 10) // Saler le mot de passe 10 fois
     .then(hash => {
       const user = new User({ //Créer un new utilisateur
@@ -32,22 +33,22 @@ exports.signup = (req, res, next) => {
 //vérifier si l'utilisateur qui tente de se connecter dispose d'identifiants valides.
 
 exports.login = (req, res, next) => {
-  User.findOne({ email: req.body.email })
+  User.findOne({ email: req.body.email }) //Si l'email de l'utilisatuer est présent ds la base de donnée
     .then(user => {
       if (!user) {
         return res.status(401).json({ error: 'Utilisateur non trouvé !' });
       }
-      bcrypt.compare(req.body.password, user.password)
+      bcrypt.compare(req.body.password, user.password)//Comparer les mots de passe
         .then(valid => {
           if (!valid) {
             return res.status(401).json({ error: 'Mot de passe incorrect !' });
           }
-          res.status(200).json({
+          res.status(200).json({ //Si le mot de passe est bon
             userId: user._id,
-            token: jwt.sign(
+            token: jwt.sign( //Fonction sign de jsonwebtoken pour encoder un nouveau token
               { userId: user._id },
-              'RANDOM_TOKEN_SECRET',
-              { expiresIn: '24h' }
+              'RANDOM_TOKEN_SECRET',//chaîne secrète de développement temporaire RANDOM_SECRET_KEY pour encoder le token
+              { expiresIn: '24h' } //Connection (token) limitée à 24h
             )
           });
         })
